@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie DB</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.0/css/ionicons.min.css"
+      integrity="sha512-JApjWRnfonFeGBY7t4yq8SWr1A6xVYEJgO/UMIYONxaR3C9GETKUg0LharbJncEzJF5Nmiv+Pr5QNulr81LjGQ=="
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+        class="logo"
+      />
+      <div class="tabs">
+        <div class="tab active-tab" id="home-tab">HOME</div>
+        <div class="tab" id="liked-tab">LIKED</div>
+      </div>
+    </header>
+
+    <div class="filters">
+      <select id="category">
+        <option value="popular">Popular</option>
+        <option value="now_playing">Now Playing</option>
+        <option value="top_rated">Top Rated</option>
+        <option value="upcoming">Upcoming</option>
+      </select>
+    </div>
+
+    <div class="pagination">
+      <button id="prev">Prev</button>
+      <span id="page-info">1/1</span>
+      <button id="next">Next</button>
+    </div>
+
+    <div class="movies-grid" id="movies-container"></div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn ion-ios-close-empty" id="close-modal"></span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
