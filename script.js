@@ -48,19 +48,15 @@ function toggleLike(movieId) {
   } else {
     state.likedMovies.add(movieId);
   }
-
-  const likeBtn = document.querySelector(`.like-btn[data-id="${movieId}"]`);
-  if (likeBtn) {
-    likeBtn.classList.toggle("ion-ios-heart");
-    likeBtn.classList.toggle("ion-ios-heart-outline");
-    likeBtn.style.color = state.likedMovies.has(movieId) ? "red" : "white";
-  }
-
-  if (state.currentTab === "liked") renderMovies();
+  renderMovies();
 }
 
 function handleTabClick(tab) {
   state.currentTab = tab;
+  document
+    .querySelectorAll(".tab")
+    .forEach((t) => t.classList.remove("active-tab"));
+  document.getElementById(`${tab}-tab`).classList.add("active-tab");
   renderMovies();
 }
 
@@ -105,14 +101,16 @@ function createMovieCard(movie) {
       }" class="movie-poster">
       <div class="movie-info">
         <div class="movie-title" data-id="${movie.id}">${movie.title}</div>
+        <div class="rating-and-like">
         <div class="rating">
           <i class="ion-star"></i>
           ${movie.vote_average}
-        </div>
-        <i class="like-btn ion-ios-heart${isLiked ? "" : "-outline"}" 
+          </div>
+          <i class="like-btn ion-ios-heart${isLiked ? "" : "-outline"}" 
            data-id="${movie.id}" style="color: ${
-    isLiked ? "red" : "white"
+    isLiked ? "red" : "inherit"
   }"></i>
+        </div>  
       </div>
     </div>
   `;
@@ -132,7 +130,10 @@ function renderMovieDetails(movie) {
   const modalContent = document.getElementById("modal-content");
 
   modalContent.innerHTML = `
+  <div class="modal-img">
     <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+    </div>
+    <div class="modal-info">
     <h2>${movie.title}</h2>
     <h3>Overview</h3>
     <p>${movie.overview}</p>
@@ -151,9 +152,10 @@ function renderMovieDetails(movie) {
       `
         )
         .join(",")}
+        </div>
     </div>
   `;
-  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal").style.display = "flex";
 }
 
 // Event Listeners
